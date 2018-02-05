@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+jdbc:
+  derby: example1
+  create: true
+  user: test1
+  password: pass1

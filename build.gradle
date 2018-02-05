@@ -1,0 +1,47 @@
+group 'com.spring.boot.sample'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    compile("org.springframework.boot:spring-boot-devtools")
+    // database connector
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    // test starter pack
+    compile("org.springframework.boot:spring-boot-starter-test")
+    // test database
+    runtime group: 'org.apache.derby', name: 'derby', version: '10.5.3.0'
+    testCompile("junit:junit")
+}
